@@ -1,5 +1,7 @@
 # Primal Silver Store
 
+[![Build Status](https://travis-ci.org/SamuelWatson89/primal-silver-store.svg?branch=master)](https://travis-ci.org/SamuelWatson89/primal-silver-store)
+
 This project is to set up an online store for Primal Silver, an independent silver jewelry maker. The business currently supplies is ware via an alternative online store, and would like to set up a more professional online shopping experience for its customers.
 The online store will allow customers to view a full range of stock available for purchase, allowing customers to create and log into an account on the store site and make purchases online just like any other online store.
 
