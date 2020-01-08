@@ -17,5 +17,5 @@ urlpatterns = [
     path('products/', include(products_urls)),
     path('cart/', include(cart_urls)),
     path('search/', include(search_urls)),
-    path('media/(<path>.*)/', static.serve, {'document_root": MEDIA_ROOT'})
+    path('media/<path>', static.serve, {'document_root": MEDIA_ROOT'})
 ]
