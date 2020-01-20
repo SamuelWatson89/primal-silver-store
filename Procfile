@@ -1,0 +1,1 @@
+web: gunicorn primal_silver_store.wsgi:application
