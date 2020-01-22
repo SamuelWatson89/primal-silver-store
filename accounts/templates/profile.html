@@ -6,6 +6,18 @@
 
 {% block content %}
 
+
+<h3>Hello, {{ profile.username }}</h3>
+
 <p>{{ profile.email }}</p>
+
+
+<h2>{{ user.get_full_name }}</h2>
+<ul>
+    <li>Username: {{ user.username }}</li>
+</ul>
+
+
+<a class="btn btn-success" type="submit" href="{% url 'user_wishlist' %}">View wishlist</a>
 
 {% endblock%}
