@@ -9,3 +9,11 @@ def user_wishlist(request):
     """
     user = User.objects.get(email=request.user.email)
     return render(request, 'wishlist.html', {"profile": user})
+
+
+def add_to_wishlist(request, id):
+    """
+    Add the specified product to the user wishlist
+    """
+
+    return redirect(reverse('index'))

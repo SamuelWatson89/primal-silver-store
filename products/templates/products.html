@@ -20,6 +20,11 @@
                     </span>
                 </div>
             </form>
+
+
+            <a class="btn btn-success" type="submit" href="{% url 'add_to_wishlist' product.id %}">Add to
+                wishlist</a>
+
         </div>
     </div>
     {% endfor %}

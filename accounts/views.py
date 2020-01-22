@@ -81,3 +81,10 @@ def user_profile(request):
     """
     user = User.objects.get(email=request.user.email)
     return render(request, 'profile.html', {"profile": user})
+
+    
+def update_profile(request, user_id):
+    user = User.objects.get(pk=user_id)
+    user.profile.bio = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit...'
+    user.save()
+
