@@ -6,18 +6,35 @@
 
 {% block content %}
 
+<div class="row">
+    <div class="col-md-6">
+        <h3>Hello, {{ profile.username }}</h3>
 
-<h3>Hello, {{ profile.username }}</h3>
+        <ul>
+            <li>Username: {{ user.username }}</li>
+            <li>Email: {{ user.email }}</li>
+            <li>First name: {{ user.first_name }}</li>
+            <li>Last name: {{ user.last_name }}</li>
+            <li>Joined: {{ user.date_joined }}</li>
+        </ul>
 
-<p>{{ profile.email }}</p>
+        <ul>
+            <li>{{ user.profile.phone_number }}</li>
+            <li>{{ user.profile.address_line1 }}</li>
+            <li>{{ user.profile.address_line2 }}</li>
+            <li>{{ user.profile.town_city }}</li>
+            <li>{{ user.profile.county }}</li>
+            <li>{{ user.profile.postcode }}</li>
+            <li>{{ user.profile.country }}</li>
+        </ul>
+
+        <a class="btn btn-success" href="{% url 'update_profile' %}">Edit Details</a>
+    </div>
 
 
-<h2>{{ user.get_full_name }}</h2>
-<ul>
-    <li>Username: {{ user.username }}</li>
-</ul>
-
-
-<a class="btn btn-success" type="submit" href="{% url 'user_wishlist' %}">View wishlist</a>
+    <div class="col-md-6">
+        <a class="btn btn-success" href="{% url 'user_wishlist' %}">View wishlist</a>
+    </div>
+</div>
 
 {% endblock%}

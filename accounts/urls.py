@@ -1,5 +1,5 @@
 from django.urls import path, include
-from accounts.views import index, logout, login, registration, user_profile
+from accounts.views import index, logout, login, registration, user_profile, update_profile
 from accounts import url_reset
 
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
     path('register/', registration, name="register"),
     path('profile/', user_profile, name="profile"),
     path('password-reset/', include(url_reset)),
+    path('profile/update', update_profile, name="update_profile"),
 ]
