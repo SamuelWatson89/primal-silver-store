@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load bootstrap_tags %}
+
 {% block page_title %}Edit {{ user }}'s Profile{% endblock %}
 
 {% block page_heading %}Edit {{ user }}'s Profile{% endblock %}
@@ -12,8 +14,8 @@
 
         <form method="post">
             {% csrf_token %}
-            {{ user_form.as_p }}
-            {{ profile_form.as_p }}
+            {{ user_form | as_bootstrap }}
+            {{ profile_form | as_bootstrap }}
             <button class="btn btn-primary" type="submit">Save changes</button>
         </form>
     </div>
