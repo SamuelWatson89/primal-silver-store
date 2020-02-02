@@ -1,12 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 from products.models import Product
+from django.utils import timezone
 
 
 class Wishlist(models.Model):
-    user = models.ForeignKey(User, related_name='wishlist', on_delete=models.CASCADE)
-    list_name = models.CharField(max_length=20)
-    items = models.ManyToManyField(Product)
-
-    def __str__(self):
-        return self.name
+    user = models.ForeignKey(User, related_name='user',
+                             on_delete=models.CASCADE, null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
