@@ -1,3 +1,25 @@
+@import url("https://fonts.googleapis.com/css?family=Rufina&display=swap");
+
 body {
-  background: red;
+  font-family: "Rufina", serif;
+}
+
+.header-top {
+  background-color: #212121;
+}
+
+.header-top a {
+  color: #f4f4f4;
+}
+
+.header-middle {
+  background-color: #2f2f2f;
+}
+
+.header-bottom {
+  background-color: #463728;
+}
+
+.header-bottom .nav-item {
+  font-size: 1.3rem;
 }
