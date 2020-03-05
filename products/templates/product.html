@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row my-4">
+    <div class="col-7">
+        <h2>
+            {{product.name}}
+        </h2>
+
+        <div class="product-price">
+            {{product.price}}
+        </div>
+
+        <p>
+            {{product.description}}
+        </p>
+
+
+        <p>
+            <a class="text-success" type="submit" href="{% url 'add_to_wishlist' product.id %}">Add to
+                wishlist</a>
+        </p>
+
+        <form method="post" action="{% url 'add_to_cart' product.id %}">
+            {% csrf_token %}
+            <div class="input-group">
+                <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity">
+                <span class="input-group-btn">
+                    <button class="btn btn-success rounded-0" type="submit">Add To Bag</button>
+                </span>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-5">
+        <img src="{{ MEDIA_URL }}{{ product.image }}" class="img-fluid" alt="{{ product.id }}">
+    </div>
+
+</div>
+{% endblock %}
