@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Rufina&display=swap");
 
-body {
+body,
+html {
   font-family: "Rufina", serif;
 }
 
