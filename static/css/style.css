@@ -4,6 +4,10 @@ body {
   font-family: "Rufina", serif;
 }
 
+.text-primal {
+  color: #87d5b4 !important;
+}
+
 .header-top {
   background-color: #212121;
 }
@@ -32,4 +36,29 @@ body {
   background: #87d5b4;
   font-size: 1.3rem;
   margin: 10px 3px;
+}
+
+footer {
+  margin-top: 2rem;
+  background: #282828;
+  color: white;
+}
+
+.footer-top {
+  background: #212121;
+  padding-top: 1rem;
+}
+
+.footer-middle {
+  padding: 2rem 1rem;
+}
+
+.footer-middle li {
+  padding: 0.2rem;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.footer-middle li a {
+  color: #f4f4f4;
 }

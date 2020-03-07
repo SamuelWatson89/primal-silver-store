@@ -11,36 +11,25 @@
 <div class="row ">
     {% for product in products %}
     <div class="col-12 col-sm-6 col-lg-3">
-        <a href="{% url 'product' product.id %}">
-            <div class="card">
-                <img src="{{ MEDIA_URL }}{{ product.image }}" class="card-img-top" alt="{{ product.id }}">
+        <a href="{% url 'product' product.id %}" class="text-decoration-none">
+            <div class="card border-0 text-center">
+                <img src="{{ MEDIA_URL }}{{ product.image }}" class="card-img-top rounded-circle"
+                    alt="{{ product.id }}">
 
                 <div class="card-body">
+                    <h5 class="card-title text-primal">{{ product.name }}</h5>
 
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p>{{ product.price }}</p>
+                    <div class="product-price w-100">{{product.price}}</div>
 
-                    <p class="card-text">{{ product.description|truncatechars:25 }}</p>
-
-                    <form method="post" action="{% url 'add_to_cart' product.id %}">
-                        {% csrf_token %}
-                        <div class="input-group">
-                            <input name="quantity" type="number" min="1" max="999" class="form-control"
-                                placeholder="Quantity" required>
-                            <span class="input-group-btn">
-                                <button class="btn btn-success" type="submit">Add</button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="card-footer text-center">
                     <a class="text-success" type="submit" href="{% url 'add_to_wishlist' product.id %}">Add to
                         wishlist</a>
                 </div>
             </div>
         </a>
     </div>
+
+
+
     {% endfor %}
 </div>
 {% endblock %}
