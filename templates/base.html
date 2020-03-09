@@ -66,13 +66,61 @@
 
                             <a class="nav-item nav-link text-light" href="{% url 'logout' %}">Log Out</a>
 
-                            <a class="nav-item nav-link text-light" href="{% url 'view_cart' %}"><i
-                                    class="fa fa-shopping-cart"></i>
-                                Cart
-                                {% if product_count > 0 %}
-                                <label class="badge badge-warning">{{ product_count }}</label>
-                                {% endif %}
-                            </a>
+                            <div class="position-relative">
+                                <a class="nav-item nav-link text-light dropdown-toggle" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                    {% comment %}href="{% url 'view_cart' %}" {% endcomment %}><i
+                                        class="fa fa-shopping-cart"></i>
+                                    Bag
+                                    {% if product_count > 0 %}
+                                    <label class="badge badge-warning">{{ product_count }}</label>
+                                    {% endif %}
+                                </a>
+
+                                <div class="dropdown-menu rounded-0 p-2 bg-dark text-light"
+                                    aria-labelledby="dropdownMenuButton">
+                                    <div class="row">
+                                        <div class="col">
+                                            {% for item in cart_items %}
+
+                                            <h6>{{ item.product.name }}<br />
+                                                <small>£{{ item.product.price }}</small>
+                                                <small>X{{ item.quantity }}</small>
+                                            </h6>
+
+                                            {% if not forloop.last %}
+                                            <hr>
+                                            {% endif %}
+
+                                            {% empty %}
+
+                                            <p>
+                                                Nothing added, yet!
+                                            </p>
+
+                                            {% endfor %}
+
+                                            {% if cart_items|length != 0 %}
+                                            <p>
+                                                Items in bag: {{product_count}}
+                                            </p>
+
+                                            <p>Total cost: £{{ total }}</p>
+                                            {% endif %}
+
+                                            <a href="{% url 'view_cart' %}"
+                                                class="btn btn-success btn-sm btn-block rounded-0" role="button">
+                                                <i class="glyphicon glyphicon-ok-sign" aria-hidden="true"></i>
+                                                View Bag</a>
+
+                                            <a href="{% url 'checkout'%}"
+                                                class="btn btn-success btn-sm btn-block rounded-0" role="button">
+                                                <i class="glyphicon glyphicon-ok-sign" aria-hidden="true"></i>
+                                                Checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <a class="nav-item nav-link text-light" href="{% url 'user_wishlist' %}">Wishlist</a>
 
