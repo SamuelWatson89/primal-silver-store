@@ -64,7 +64,7 @@
                             <a class="nav-item nav-link text-light" href="{% url 'profile' %}">Profile<span
                                     class="sr-only">(current)</span></a>
 
-                            <a class="nav-item nav-link text-light" href="{% url 'logout' %}">Log Out</a>
+                            <a class="nav-item nav-link text-light" href="{% url 'user_wishlist' %}">Wishlist</a>
 
                             <div class="position-relative">
                                 <a class="nav-item nav-link text-light dropdown-toggle" id="dropdownMenuButton"
@@ -122,13 +122,12 @@
                                 </div>
                             </div>
 
-                            <a class="nav-item nav-link text-light" href="{% url 'user_wishlist' %}">Wishlist</a>
+                            <a class="nav-item nav-link text-light" href="{% url 'logout' %}">Log Out</a>
 
                             {%  else %}
+                            <a class="nav-item nav-link text-light" href="{% url 'login' %}">Profile</a>
 
                             <a class="nav-item nav-link text-light" href="{% url 'register' %}">Register</a>
-
-                            <a class="nav-item nav-link text-light" href="{% url 'login' %}">Log In</a>
                             {% endif %}
 
                             <form class="form-inline d-sm-none" action="{% url 'search' %}" method="GET">
