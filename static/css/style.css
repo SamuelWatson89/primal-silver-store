@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Rufina:400|Sintony:400');
+@import url("https://fonts.googleapis.com/css?family=Rufina:400|Sintony:400");
 
 html {
   font-size: 100%;
@@ -8,7 +8,7 @@ html {
 
 body {
   background-color: white;
-  font-family: 'Sintony', sans-serif;
+  font-family: "Sintony", sans-serif;
   font-weight: 400;
   line-height: 1.65;
   color: #333;
@@ -23,7 +23,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Rufina', serif;
+  font-family: "Rufina", serif;
   font-weight: 400;
   line-height: 1.15;
 }
@@ -74,6 +74,10 @@ small,
   background-color: #463728;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .product-price {
   width: 150px;
   padding: 3px;
@@ -106,4 +110,89 @@ footer {
 
 .footer-middle li a {
   color: #f4f4f4;
+}
+
+.message-exit {
+  -webkit-animation: swing-out-top-bck 0.45s
+    cubic-bezier(0.6, -0.28, 0.735, 0.045) both;
+  animation: swing-out-top-bck 0.45s cubic-bezier(0.6, -0.28, 0.735, 0.045) both;
+}
+
+@-webkit-keyframes swing-out-top-bck {
+  0% {
+    -webkit-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotateX(-100deg);
+    transform: rotateX(-100deg);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    opacity: 0;
+  }
+}
+@keyframes swing-out-top-bck {
+  0% {
+    -webkit-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotateX(-100deg);
+    transform: rotateX(-100deg);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    opacity: 0;
+  }
+}
+
+.btn-primal {
+  color: #ffffff;
+  background-color: #87d5b4;
+  border-color: #68bd99;
+}
+
+.btn-primal:hover,
+.btn-primal:focus,
+.btn-primal:active,
+.btn-primal.active,
+.open .dropdown-toggle.btn-primal {
+  color: #ffffff;
+  background-color: #5cdba6;
+  border-color: #68bd99;
+}
+
+.btn-primal:active,
+.btn-primal.active,
+.open .dropdown-toggle.btn-primal {
+  background-image: none;
+}
+
+.btn-primal.disabled,
+.btn-primal[disabled],
+fieldset[disabled] .btn-primal,
+.btn-primal.disabled:hover,
+.btn-primal[disabled]:hover,
+fieldset[disabled] .btn-primal:hover,
+.btn-primal.disabled:focus,
+.btn-primal[disabled]:focus,
+fieldset[disabled] .btn-primal:focus,
+.btn-primal.disabled:active,
+.btn-primal[disabled]:active,
+fieldset[disabled] .btn-primal:active,
+.btn-primal.disabled.active,
+.btn-primal[disabled].active,
+fieldset[disabled] .btn-primal.active {
+  background-color: #87d5b4;
+  border-color: #68bd99;
+}
+
+.btn-primal .badge {
+  color: #87d5b4;
+  background-color: #ffffff;
 }
