@@ -3,7 +3,6 @@
 {% load bootstrap_tags %}
 
 {% block content %}
-
 <div class="row my-3">
     <div class="col-12">
         <h3>You Order</h3>
@@ -45,6 +44,12 @@
                 </form>
             </div>
         </div>
+        {% empty %}
+        <div class="row border-bottom mb-5">
+            <div class="col-12">
+                <h4>Looks pretty empty in here...</h4>
+            </div>
+        </div>
         {% endfor%}
     </div>
 
@@ -59,10 +64,17 @@
                 <p><strong>Total cost</strong> £{{ total }}</p>
             </div>
 
+            {% if product_count == 0 %}
             <div class="card-footer">
-                <a href="{% url 'checkout'%}" class="btn btn-success btn-block" role="button"><span
+                <a href="{% url 'checkout'%}" class="btn btn-outline-secondary btn-block disabled" role="button"
+                    disabled><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+            </div>
+            {% else %}
+            <div class="card-footer">
+                <a href="{% url 'checkout'%}" class="btn btn-primal btn-block" role="button"><span
                         class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>

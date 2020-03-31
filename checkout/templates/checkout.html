@@ -13,6 +13,7 @@
 {% endblock %}
 
 {% block content %}
+{% if product_count > 0 %}
 <div class="row m-3">
     <div class="col-12">
         <h3>Chekout your order</h3>
@@ -61,4 +62,21 @@
     </div>
 </div>
 
+{% else %}
+
+<div class="row">
+    <div class="col-12 my-5 text-center">
+        <h3>You havnt added anything to your bag... <br>
+            ...So you cannot give us any money yet</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 text-center">
+        <a href="{% url 'products'%}" class="btn btn-primal rounded-0 border-0">Back to home</a>
+        <a href="{% url 'view_cart' %}" class="btn btn-primal rounded-0 border-0">Back to cart</a>
+    </div>
+</div>
+
+{% endif %}
 {% endblock %}
