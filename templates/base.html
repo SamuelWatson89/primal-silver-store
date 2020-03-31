@@ -61,20 +61,22 @@
 
                         <div class="nav navbar-nav ml-auto w-100 justify-content-end">
                             {% if user.is_authenticated %}
-                            <a class="nav-item nav-link text-light" href="{% url 'profile' %}">Profile<span
-                                    class="sr-only">(current)</span></a>
+                            <a class="nav-item nav-link text-light" href="{% url 'profile' %}"><i
+                                    class="fa fa-user "></i> Profile<span class="sr-only">(current)</span></a>
 
-                            <a class="nav-item nav-link text-light" href="{% url 'user_wishlist' %}">Wishlist</a>
+                            <a class="nav-item nav-link text-light" href="{% url 'user_wishlist' %}"><i
+                                    class="fa fa-heart"></i> Wishlist</a>
 
-                            <div class="position-relative">
+                            <div class="position-relative pointer">
                                 <a class="nav-item nav-link text-light dropdown-toggle" id="dropdownMenuButton"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                    {% comment %}href="{% url 'view_cart' %}" {% endcomment %}><i
-                                        class="fa fa-shopping-cart"></i>
-                                    Bag
+                                    {% comment %}href="{% url 'view_cart' %}" {% endcomment %}>
                                     {% if product_count > 0 %}
                                     <label class="badge badge-warning">{{ product_count }}</label>
+                                    {% else %}
+                                    <i class="fa fa-shopping-cart"></i>
                                     {% endif %}
+                                    Bag
                                 </a>
 
                                 <div class="dropdown-menu rounded-0 p-2 bg-dark text-light"
@@ -109,12 +111,12 @@
                                             {% endif %}
 
                                             <a href="{% url 'view_cart' %}"
-                                                class="btn btn-success btn-sm btn-block rounded-0" role="button">
+                                                class="btn btn-primal btn-sm btn-block rounded-0" role="button">
                                                 <i class="glyphicon glyphicon-ok-sign" aria-hidden="true"></i>
                                                 View Bag</a>
 
                                             <a href="{% url 'checkout'%}"
-                                                class="btn btn-success btn-sm btn-block rounded-0" role="button">
+                                                class="btn btn-primal btn-sm btn-block rounded-0" role="button">
                                                 <i class="glyphicon glyphicon-ok-sign" aria-hidden="true"></i>
                                                 Checkout</a>
                                         </div>
@@ -125,9 +127,11 @@
                             <a class="nav-item nav-link text-light" href="{% url 'logout' %}">Log Out</a>
 
                             {%  else %}
-                            <a class="nav-item nav-link text-light" href="{% url 'login' %}">Profile</a>
+                            <a class="nav-item nav-link text-light" href="{% url 'login' %}"><i class="fa fa-user ">
+                                </i> Profile</a>
 
-                            <a class="nav-item nav-link text-light" href="{% url 'register' %}">Register</a>
+                            <a class="nav-item nav-link text-light" href="{% url 'register' %}"><i
+                                    class="fas fa-pen-square"></i> Register</a>
                             {% endif %}
 
                             <form class="form-inline d-sm-none" action="{% url 'search' %}" method="GET">
@@ -162,7 +166,7 @@
     </header>
 
     {% if messages %}
-    <div class="alert alert-success">
+    <div class="alert alert-success" id="message_container">
         <div class="messages">
             {% for message in messages %}
             {{ message }}
@@ -234,6 +238,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
+
+    <script src="static/js/common.js"></script>
 </body>
 
 </html>
