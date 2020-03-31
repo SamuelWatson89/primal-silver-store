@@ -2,10 +2,11 @@
 
 {% block content %}
 {% if products|length != 0 %}
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-4">Fluid jumbotron</h1>
-        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <img src="{{ MEDIA_URL }}banners/rings-banner.jpg" alt="" class="img-fluid">
+        </div>
     </div>
 </div>
 {% endif %}
@@ -13,7 +14,7 @@
 
 <div class="row ">
     {% for product in products %}
-    <div class="col-12 col-sm-6 col-lg-2">
+    <div class="col-6 col-md-4 col-lg-2">
         <a href="{% url 'product' product.id %}" class="text-decoration-none">
             <div class="card border-0 text-center">
                 <img src="{{ MEDIA_URL }}{{ product.image }}" class="card-img-top rounded-circle"
@@ -22,7 +23,7 @@
                 <div class="card-body">
                     <h5 class="card-title text-primal">{{ product.name }}</h5>
 
-                    <div class="product-price w-100">{{product.price}}</div>
+                    <div class="product-price w-100">£{{product.price}}</div>
 
                     <a class="text-success" type="submit" href="{% url 'add_to_wishlist' product.id %}">Add to
                         wishlist</a>
