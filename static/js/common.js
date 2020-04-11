@@ -1,5 +1,7 @@
 var message_ele = document.getElementById("message_container");
 
-setTimeout(function () {
-  message_ele.classList.add("message-exit");
-}, 3000);
+if (message_ele) {
+  setTimeout(function () {
+    message_ele.classList.add("message-exit");
+  }, 3000);
+}
