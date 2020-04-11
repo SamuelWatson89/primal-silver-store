@@ -13,7 +13,6 @@
 </div>
 
 <div class="row">
-
     {% for item in wishlist %}
     <div class="col-12 col-sm-6 col-lg-3">
         <div class="card border-0 text-center">
@@ -22,6 +21,12 @@
 
             <div class="card-body">
                 <h5 class="card-title text-primal">{{ item.product.name }}</h5>
+
+                {% if product.stock_count > 0 %}
+                <p class="text-success"><i class="fa fa-check"></i> {{  product.stock_count }} In stock</p>
+                {% else %}
+                <p class="text-danger"><i class="fa fa-times"></i> Not in stock</p>
+                {% endif %}
 
                 <div class="product-price w-100">£{{ item.product.price}}</div>
 
@@ -32,7 +37,16 @@
                         <input name="quantity" type="number" min="1" max="999" class="form-control"
                             placeholder="Quantity">
                         <span class="input-group-btn">
-                            <button class="btn btn-primal rounded-0" type="submit">Add</button>
+                            {% if product.stock_count > 0 %}
+                            <button class="btn btn-primal rounded-0" type="submit">Add To Bag</button>
+                            {% else %}
+                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Item not in stock">
+                                <button class="btn btn-primal rounded-0" type="submit" style="pointer-events: none;"
+                                    aria-disabled=" true" disabled>
+                                    Add
+                                </button>
+                            </span>
+                            {% endif %}
                         </span>
                     </div>
                 </form>
