@@ -64,8 +64,13 @@
                             <a class="nav-item nav-link text-light" href="{% url 'profile' %}"><i
                                     class="fa fa-user "></i> Profile<span class="sr-only">(current)</span></a>
 
-                            <a class="nav-item nav-link text-light" href="{% url 'user_wishlist' %}"><i
-                                    class="fa fa-heart"></i> Wishlist</a>
+                            <a class="nav-item nav-link text-light" href="{% url 'user_wishlist' %}">
+                                {% if wishlist_count > 0 %}
+                                <i class="fa fa-heart text-danger"></i>
+                                {% else %}
+                                <i class="fa fa-heart"></i>
+                                {% endif %}
+                                Wishlist</a>
 
                             <div class="position-relative pointer">
                                 <a class="nav-item nav-link text-light dropdown-toggle" id="dropdownMenuButton"
@@ -240,6 +245,12 @@
     </script>
 
     <script src="static/js/common.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 </body>
 
 </html>
