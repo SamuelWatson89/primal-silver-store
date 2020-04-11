@@ -23,10 +23,17 @@
                 <div class="card-body">
                     <h5 class="card-title text-primal">{{ product.name }}</h5>
 
+                    {% if product.stock_count > 0 %}
+                    <p class="text-success"><i class="fa fa-check"></i> {{  product.stock_count }} In stock</p>
+                    {% else %}
+                    <p class="text-danger"><i class="fa fa-times"></i> Not in stock</p>
+                    {% endif %}
+
                     <div class="product-price w-100">£{{product.price}}</div>
 
-                    <a class="text-success" type="submit" href="{% url 'add_to_wishlist' product.id %}">Add to
-                        wishlist</a>
+                    {% comment %} <a class="text-success" type="submit"
+                        href="{% url 'add_to_wishlist' product.id %}">Add to
+                        wishlist</a> {% endcomment %}
                 </div>
             </div>
         </a>
