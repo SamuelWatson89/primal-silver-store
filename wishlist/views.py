@@ -9,11 +9,12 @@ from .models import Wishlist
 @login_required
 def user_wishlist(request):
     """
-    The users profile page
+    The users wishlist page
     """
     user = User.objects.get(email=request.user.email)
     wishlist = Wishlist.objects.filter(user_id=request.user.id)
-    return render(request, 'wishlist.html', {"profile": user, "wishlist": wishlist})
+    wishlist_count = wishlist.count()
+    return render(request, 'wishlist.html', {"profile": user, "wishlist": wishlist, "wishlist_count": wishlist_count})
 
 
 @login_required
