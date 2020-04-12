@@ -75,6 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'cart.contexts.cart_contents',
                 'wishlist.contexts.wishlist_contents',
+                'products.contexts.product_stock_count'
             ],
         },
     },
