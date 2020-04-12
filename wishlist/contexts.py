@@ -12,4 +12,4 @@ def wishlist_contents(request):
     user = User.objects.get(email=request.user.email)
     wishlist = Wishlist.objects.filter(user_id=request.user.id)
     wishlist_count = wishlist.count()
-    return {"profile": user, "wishlist": wishlist, "wishlist_count": wishlist_count}
+    return {"wishlist_count": wishlist_count}
