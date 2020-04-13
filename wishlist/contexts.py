@@ -8,8 +8,10 @@ def wishlist_contents(request):
     """
     Ensure that the users wishlist contents are available on every page
     """
-
-    user = User.objects.get(email=request.user.email)
-    wishlist = Wishlist.objects.filter(user_id=request.user.id)
-    wishlist_count = wishlist.count()
-    return {"wishlist_count": wishlist_count}
+    if request.user.is_authenticated:
+        user = User.objects.get(email=request.user.email)
+        wishlist = Wishlist.objects.filter(user_id=request.user.id)
+        wishlist_count = wishlist.count()
+        return {"wishlist_count": wishlist_count}
+    else:
+        return {}
