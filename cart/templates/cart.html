@@ -2,12 +2,17 @@
 {% load static %}
 {% load bootstrap_tags %}
 
+{% block head_js %}
+<script type="text/javascript" src="{% static 'js/common.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <div class="row my-3">
     <div class="col-12">
         <h3>You Order</h3>
     </div>
 </div>
+
 
 <div class="row">
     <div class="col-12 col-lg-9">
@@ -20,7 +25,16 @@
                         <h5 class="mt-0">{{ item.product.name }} <small
                                 class="text-success">£{{ item.product.price }}</small>
                         </h5>
+
+                        {% if item.quantity > item.product.stock_count %}
+                        <p class="alert alert-danger itemOverOrder" role="alert">
+                            <strong>{{item.quantity}}</strong> Added<br />
+                            <strong>{{ item.product.stock_count }}</strong> In stock <br />
+                            <small><strong>You are trying to order more than we have in stock</strong></small>
+                        </p>
+                        {% else %}
                         <p><strong>Quantity Ordered:</strong> {{item.quantity}}</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -67,12 +81,12 @@
             {% if product_count == 0 %}
             <div class="card-footer">
                 <a href="{% url 'checkout'%}" class="btn btn-outline-secondary btn-block disabled" role="button"
-                    disabled><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+                    disabled><span class="fa fa-check" aria-hidden="true"></span> Checkout</a>
             </div>
             {% else %}
             <div class="card-footer">
-                <a href="{% url 'checkout'%}" class="btn btn-primal btn-block" role="button"><span
-                        class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+                <a href="{% url 'checkout'%}" class="btn btn-primal btn-block" id="checkoutButton" role="button"><span
+                        class="fa fa-check" aria-hidden="true"></span> Checkout</a>
             </div>
             {% endif %}
         </div>
