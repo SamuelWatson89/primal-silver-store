@@ -22,8 +22,8 @@
             <div class="card-body">
                 <h5 class="card-title text-primal">{{ item.product.name }}</h5>
 
-                {% if product.stock_count > 0 %}
-                <p class="text-success"><i class="fa fa-check"></i> {{  product.stock_count }} In stock</p>
+                {% if item.product.stock_count > 0 %}
+                <p class="text-success"><i class="fa fa-check"></i> {{  item.product.stock_count }} In stock</p>
                 {% else %}
                 <p class="text-danger"><i class="fa fa-times"></i> Not in stock</p>
                 {% endif %}
