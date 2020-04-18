@@ -13,9 +13,9 @@ if (over_stock.length > 0) {
 }
 
 var product_banner_image = document.getElementById("products-banner-image");
-var url = window.location.href.split("/");
-var last_item = url[url.length - 2];
 if (product_banner_image) {
+  var url = window.location.href.split("/");
+  var last_item = url[url.length - 2];
   product_banner_image.src =
     product_banner_image.src + `banners/${last_item}-banner.jpg`;
 } else {
