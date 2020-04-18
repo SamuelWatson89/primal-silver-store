@@ -13,12 +13,22 @@
         <div class="col-4 mx-auto my-5">
             <div class="card bg-light">
                 <div class="card-body">
-                    <form method="POST">
-                        {% csrf_token %}
-                        {{ login_form | as_bootstrap }}
-                        <button class="btn btn-primary rounded-0" type="submit">Login</button> <a
-                            href="{% url 'password_reset' %}">Forgotten Password</a>
-                    </form>
+                    <section class="my-2">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ login_form | as_bootstrap }}
+                            <button class="btn btn-primal rounded-0" type="submit">Login</button> <a
+                                href="{% url 'password_reset' %}" class="text-primal"><strong>Forgotten
+                                    Password</strong></a>
+                        </form>
+                    </section>
+
+                    <section class="my-2">
+                        <p>
+                            If you do not have an account, <a href="{% url 'register' %}"><strong>Register
+                                    now</strong></a>
+                        </p>
+                    </section>
                 </div>
             </div>
         </div>
