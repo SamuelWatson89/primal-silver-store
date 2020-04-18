@@ -1,46 +1,43 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% if products|length != 0 %}
 <div class="container">
-    <div class="row mb-4">
-        <div class="col-12">
-            <img id="products-banner-image" src="{{ MEDIA_URL }}" alt="" class="img-fluid">
-        </div>
+  <div class="row mb-4">
+    <div class="col-12">
+      <img id="products-banner-image" src="{{ MEDIA_URL }}" alt="" class="img-fluid">
     </div>
+  </div>
 </div>
-{% endif %}
 
 <div class="row ">
-    {% for product in products %}
-    <div class="col-6 col-md-4 col-lg-2">
-        <a href="{% url 'product' product.id %}" class="text-decoration-none">
-            <div class="card border-0 text-center">
-                <img src="{{ MEDIA_URL }}{{ product.image }}" class="card-img-top rounded-circle"
-                    alt="{{ product.id }}">
+  {% for product in products %}
+  <div class="col-6 col-md-4 col-lg-2">
+    <a href="{% url 'product' product.id %}" class="text-decoration-none">
+      <div class="card border-0 text-center">
+        <img src="{{ MEDIA_URL }}{{ product.image }}" class="card-img-top rounded-circle" alt="{{ product.id }}">
 
-                <div class="card-body">
-                    <h5 class="card-title text-primal">{{ product.name }}</h5>
+        <div class="card-body">
+          <h5 class="card-title text-primal">{{ product.name }}</h5>
 
-                    {% if product.stock_count > 0 %}
-                    <p class="text-success"><i class="fa fa-check"></i> {{  product.stock_count }} In stock</p>
-                    {% else %}
-                    <p class="text-danger"><i class="fa fa-times"></i> Not in stock</p>
-                    {% endif %}
+          {% if product.stock_count > 0 %}
+          <p class="text-success"><i class="fa fa-check"></i> {{  product.stock_count }} In stock</p>
+          {% else %}
+          <p class="text-danger"><i class="fa fa-times"></i> Not in stock</p>
+          {% endif %}
 
-                    <div class="product-price w-100">£{{product.price}}</div>
-                </div>
-            </div>
-        </a>
-    </div>
-    {% empty %}
+          <div class="product-price w-100">£{{product.price}}</div>
+        </div>
+      </div>
+    </a>
+  </div>
+  {% empty %}
 
-    <div class="col-12 text-center p-5">
+  <div class="col-12 text-center p-5">
 
-        <h2>Whoops... Looks like we dont have anythig listed yet!</h2>
-        <h4>Check back soon!</h4>
-    </div>
+    <h2>Whoops... Looks like we dont have anythig listed yet!</h2>
+    <h4>Check back soon!</h4>
+  </div>
 
-    {% endfor %}
+  {% endfor %}
 </div>
 {% endblock %}
