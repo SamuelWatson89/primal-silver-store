@@ -12,10 +12,17 @@ from django.views import static
 from .settings import MEDIA_ROOT
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('about', TemplateView.as_view(
+        template_name='../templates/about.html'), name='about'),
+    path('contact', TemplateView.as_view(
+        template_name='../templates/contact.html'), name='contact'),
+    path('location', TemplateView.as_view(
+        template_name='../templates/location.html'), name='location'),
     path('', all_products, name="index"),
     path('accounts/', include(accounts_urls)),
     path('products/', include(products_urls)),

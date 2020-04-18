@@ -3,249 +3,249 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Primal Silver Store</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Primal Silver Store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    {% comment %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endcomment %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  {% comment %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endcomment %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
-    <header>
-        <section class="header-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <ul class="nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#"><small>Contact</small></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><small>About</small></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><small>Location</small></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class=" header-middle">
-            <nav class="navbar navbar-light navbar-expand-md bg-faded justify-content-center py-5">
-                <div class="container">
-                    <a href="/" class="navbar-brand d-flex w-50 mr-auto">
-                        <h2 class="text-light">Primal Silver</h2>
-                    </a>
-
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="navbar-collapse collapse w-100" id="mainNav">
-                        <div class="navbar-nav w-100 justify-content-center">
-                            <form class="form-inline d-none d-sm-block w-100" action="{% url 'search' %}" method="GET">
-                                <input class="form-control mr-sm-2 w-100" type="search" placeholder="Search"
-                                    aria-label="Search" name="q">
-                            </form>
-                        </div>
-
-                        <div class="nav navbar-nav ml-auto w-100 justify-content-end">
-                            {% if user.is_authenticated %}
-                            <a class="nav-item nav-link text-light" href="{% url 'profile' %}"><i
-                                    class="fa fa-user "></i> Profile<span class="sr-only">(current)</span></a>
-
-                            <a class="nav-item nav-link text-light" href="{% url 'user_wishlist' %}">
-                                {% if wishlist_count > 0 %}
-                                <i class="fa fa-heart text-danger"></i>
-                                {% else %}
-                                <i class="fa fa-heart"></i>
-                                {% endif %}
-                                Wishlist</a>
-
-                            <div class="position-relative pointer">
-                                <a class="nav-item nav-link text-light dropdown-toggle" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                    {% comment %}href="{% url 'view_cart' %}" {% endcomment %}>
-                                    {% if product_count > 0 %}
-                                    <label class="badge badge-warning">{{ product_count }}</label>
-                                    {% else %}
-                                    <i class="fa fa-shopping-cart"></i>
-                                    {% endif %}
-                                    Bag
-                                </a>
-
-                                <div class="dropdown-menu rounded-0 p-2 bg-dark text-light"
-                                    aria-labelledby="dropdownMenuButton">
-                                    <div class="row">
-                                        <div class="col">
-                                            {% for item in cart_items %}
-
-                                            <h6>{{ item.product.name }}<br />
-                                                <small>£{{ item.product.price }}</small>
-                                                <small>X{{ item.quantity }}</small>
-                                            </h6>
-
-                                            {% if not forloop.last %}
-                                            <hr>
-                                            {% endif %}
-
-                                            {% empty %}
-
-                                            <p>
-                                                Nothing added, yet!
-                                            </p>
-
-                                            {% endfor %}
-
-                                            {% if cart_items|length != 0 %}
-                                            <p>
-                                                Items in bag: {{product_count}}
-                                            </p>
-
-                                            <p>Total cost: £{{ total }}</p>
-                                            {% endif %}
-
-                                            <a href="{% url 'view_cart' %}"
-                                                class="btn btn-primal btn-sm btn-block rounded-0" role="button">
-                                                <i class="glyphicon glyphicon-ok-sign" aria-hidden="true"></i>
-                                                View Bag</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <a class="nav-item nav-link text-light" href="{% url 'logout' %}">Log Out</a>
-
-                            {%  else %}
-                            <a class="nav-item nav-link text-light" href="{% url 'login' %}"><i class="fa fa-user ">
-                                </i> Profile</a>
-
-                            <a class="nav-item nav-link text-light" href="{% url 'register' %}"><i
-                                    class="fas fa-pen-square"></i> Register</a>
-                            {% endif %}
-
-                            <form class="form-inline d-sm-none" action="{% url 'search' %}" method="GET">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                                    aria-label="Search" name="q">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </section>
-
-        <section class="header-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <ul class="nav justify-content-center py-2">
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{% url 'rings' %}">Rings</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{% url 'bracelets' %}">Braclets</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{% url 'necklaces' %}">Necklaces</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </header>
-
-    {% if messages %}
-    <div class="alert alert-success" id="message_container">
-        <div class="messages">
-            {% for message in messages %}
-            {{ message }}
-            {% endfor %}
+  <header>
+    <section class="header-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact' %}"><small>Contact</small></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}"><small>About</small></a>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section class=" header-middle">
+      <nav class="navbar navbar-light navbar-expand-md bg-faded justify-content-center py-5">
+        <div class="container">
+          <a href="/" class="navbar-brand d-flex w-50 mr-auto">
+            <h2 class="text-light">Primal Silver</h2>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="navbar-collapse collapse w-100" id="mainNav">
+            <div class="navbar-nav w-100 justify-content-center">
+              <form class="form-inline d-none d-sm-block w-100" action="{% url 'search' %}" method="GET">
+                <input class="form-control mr-sm-2 w-100" type="search" placeholder="Search" aria-label="Search"
+                  name="q">
+              </form>
+            </div>
+
+            <div class="nav navbar-nav ml-auto w-100 justify-content-end">
+              {% if user.is_authenticated %}
+              <a class="nav-item nav-link text-light" href="{% url 'profile' %}"><i class="fa fa-user "></i>
+                Profile<span class="sr-only">(current)</span></a>
+
+              <a class="nav-item nav-link text-light" href="{% url 'user_wishlist' %}">
+                {% if wishlist_count > 0 %}
+                <i class="fa fa-heart text-danger"></i>
+                {% else %}
+                <i class="fa fa-heart"></i>
+                {% endif %}
+                Wishlist</a>
+
+              <div class="position-relative pointer">
+                <a class="nav-item nav-link text-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false" {% comment %}href="{% url 'view_cart' %}" {% endcomment %}>
+                  {% if product_count > 0 %}
+                  <label class="badge badge-warning">{{ product_count }}</label>
+                  {% else %}
+                  <i class="fa fa-shopping-cart"></i>
+                  {% endif %}
+                  Bag
+                </a>
+
+                <div class="dropdown-menu rounded-0 p-2 bg-dark text-light" aria-labelledby="dropdownMenuButton">
+                  <div class="row">
+                    <div class="col">
+                      {% for item in cart_items %}
+
+                      <h6>{{ item.product.name }}<br />
+                        <small>£{{ item.product.price }}</small>
+                        <small>X{{ item.quantity }}</small>
+                      </h6>
+
+                      {% if not forloop.last %}
+                      <hr>
+                      {% endif %}
+
+                      {% empty %}
+
+                      <p>
+                        Nothing added, yet!
+                      </p>
+
+                      {% endfor %}
+
+                      {% if cart_items|length != 0 %}
+                      <p>
+                        Items in bag: {{product_count}}
+                      </p>
+
+                      <p>Total cost: £{{ total }}</p>
+                      {% endif %}
+
+                      <a href="{% url 'view_cart' %}" class="btn btn-primal btn-sm btn-block rounded-0" role="button">
+                        <i class="glyphicon glyphicon-ok-sign" aria-hidden="true"></i>
+                        View Bag</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <a class="nav-item nav-link text-light" href="{% url 'logout' %}">Log Out</a>
+
+              {%  else %}
+              <a class="nav-item nav-link text-light" href="{% url 'login' %}"><i class="fa fa-user ">
+                </i> Profile</a>
+
+              <a class="nav-item nav-link text-light" href="{% url 'register' %}"><i class="fas fa-pen-square"></i>
+                Register</a>
+              {% endif %}
+
+              <form class="form-inline d-sm-none" action="{% url 'search' %}" method="GET">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </section>
+
+    <section class="header-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <ul class="nav justify-content-center py-2">
+              <li class="nav-item">
+                <a class="nav-link text-light" href="{% url 'rings' %}">Rings</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="{% url 'bracelets' %}">Braclets</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light" href="{% url 'necklaces' %}">Necklaces</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  {% if messages %}
+  <div class="alert alert-success" id="message_container">
+    <div class="messages">
+      {% for message in messages %}
+      {{ message }}
+      {% endfor %}
+    </div>
+  </div>
+
+  {% endif %}
+  <main class="container">
+    {% block content %}
+
+    {% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="container-fluid footer-top">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h4 class="text-primal">Looking for something a bit more bespoke?</h4>
+          <p>Call 01443 123456 to arrange a bespoke piece to be commissioned</p>
+        </div>
+      </div>
     </div>
 
-    {% endif %}
-    <main class="container">
-        {% block content %} {% endblock %}
-    </main>
-
-    <footer class="footer">
-        <div class="container-fluid footer-top">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h4 class="text-primal">Looking for something a bit more bespoke?</h4>
-                    <p>Call 01443 123456 to arrange a bespoke piece to be commissioned</p>
-                </div>
-            </div>
+    <div class="container footer-middle">
+      <div class="row">
+        <div class="col">
+          <p class="text-primal">Primal Silver</p>
+          <ul class="list-group">
+            <li>
+              <a href="{% url 'contact' %}"><small>Contact</small></a>
+            </li>
+            <li>
+              <a href="{% url 'about' %}"><small>About</small></a>
+            </li>
+          </ul>
         </div>
 
-        <div class="container footer-middle">
-            <div class="row">
-                <div class="col">
-                    <p class="text-primal">Primal Silver</p>
-                    <ul class="list-group">
-                        <li><a href="http://">Link</a></li>
-                        <li><a href="http://">Link</a></li>
-                        <li><a href="http://">Link</a></li>
-                    </ul>
-                </div>
-
-                <div class="col">
-                    <p class="text-primal">Delivery and returns</p>
-                    <ul class="list-group">
-                        <li><a href="http://">Link</a></li>
-                        <li><a href="http://">Link</a></li>
-                        <li><a href="http://">Link</a></li>
-                    </ul>
-                </div>
-
-                <div class="col">
-                    <p class="text-primal">Suport</p>
-                    <ul class="list-group">
-                        <li><a href="http://">Link</a></li>
-                        <li><a href="http://">Link</a></li>
-                        <li><a href="http://">Link</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="row mt-4">
-                <div class="col text-center">
-                    <i class="fab fa-facebook fa-4x mx-5 text-primal"></i>
-                    <i class="fab fa-instagram fa-4x mx-5 text-primal"></i>
-                    <i class="fab fa-twitter-square fa-4x mx-5 text-primal"></i>
-                </div>
-            </div>
+        <div class="col">
+          <p class="text-primal">Delivery and returns</p>
+          <ul class="list-group">
+            <li><a href="http://">Link</a></li>
+            <li><a href="http://">Link</a></li>
+            <li><a href="http://">Link</a></li>
+          </ul>
         </div>
-    </footer>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
+        <div class="col">
+          <p class="text-primal">Suport</p>
+          <ul class="list-group">
+            <li><a href="http://">Link</a></li>
+            <li><a href="http://">Link</a></li>
+            <li><a href="http://">Link</a></li>
+          </ul>
+        </div>
+      </div>
 
-    <script src="{% static 'js/common.js' %}"></script>
+      <div class="row mt-4">
+        <div class="col text-center">
+          <a href="https://www.facebook.com/Primal.silver/" target="_blank"><i
+              class="fab fa-facebook fa-4x mx-5 text-primal"></i></a>
+          <a href="https://www.instagram.com/primal.silver/" target="_blank"><i
+              class="fab fa-instagram fa-4x mx-5 text-primal"></i></a>
+          <i class="fab fa-twitter-square fa-4x mx-5 text-primal"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-    <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-    {% block head_js %}
-    {% endblock head_js %}
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
+
+  <script src="{% static 'js/common.js' %}"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
+  {% block head_js %}
+  {% endblock head_js %}
 </body>
 
 </html>
