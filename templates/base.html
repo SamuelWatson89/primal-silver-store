@@ -55,18 +55,6 @@
             </div>
 
             <div class="nav navbar-nav ml-auto w-100 justify-content-end">
-              {% if user.is_authenticated %}
-              <a class="nav-item nav-link text-light" href="{% url 'profile' %}"><i class="fa fa-user "></i>
-                Profile<span class="sr-only">(current)</span></a>
-
-              <a class="nav-item nav-link text-light" href="{% url 'user_wishlist' %}">
-                {% if wishlist_count > 0 %}
-                <i class="fa fa-heart text-danger"></i>
-                {% else %}
-                <i class="fa fa-heart"></i>
-                {% endif %}
-                Wishlist</a>
-
               <div class="position-relative pointer">
                 <a class="nav-item nav-link text-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false" {% comment %}href="{% url 'view_cart' %}" {% endcomment %}>
@@ -115,6 +103,18 @@
                   </div>
                 </div>
               </div>
+              {% if user.is_authenticated %}
+              <a class="nav-item nav-link text-light" href="{% url 'profile' %}"><i class="fa fa-user "></i>
+                Profile<span class="sr-only">(current)</span></a>
+
+              <a class="nav-item nav-link text-light" href="{% url 'user_wishlist' %}">
+                {% if wishlist_count > 0 %}
+                <i class="fa fa-heart text-danger"></i>
+                {% else %}
+                <i class="fa fa-heart"></i>
+                {% endif %}
+                Wishlist</a>
+
 
               <a class="nav-item nav-link text-light" href="{% url 'logout' %}">Log Out</a>
 
