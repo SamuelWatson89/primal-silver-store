@@ -13,29 +13,25 @@
 </div>
 
 <div class="row mb-4">
-    <div class="col-sm-6">
-        <div class="card">
-            <h5 class="card-header">
-                Your details
-            </h5>
+    <div class="col-md-5">
+        <div class="card my-2">
             <div class="card-body">
+                <h5><strong>Your details</strong></h5>
+
                 <ul class="list-unstyled">
                     <li>{{ user.first_name }} {{ user.last_name }}</li>
                     <li>{{ user.email }}</li>
                     <li>{{ user.profile.phone_number }}</li>
                     <li>Joined on {{ user.date_joined }}</li>
-                    <a class="" href="{% url 'update_profile' %}">Edit Details</a>
                 </ul>
+
             </div>
         </div>
-    </div>
 
-    <div class="col-sm-6">
-        <div class="card">
-            <h5 class="card-header">
-                Your Address
-            </h5>
+        <div class="card my-2">
             <div class="card-body">
+                <h5><strong>Saved address</strong></h5>
+
                 <ul class="list-unstyled">
                     <li>{{ user.profile.address_line1 }}</li>
                     <li>{{ user.profile.address_line2 }}</li>
@@ -43,7 +39,18 @@
                     <li>{{ user.profile.county }}</li>
                     <li>{{ user.profile.postcode }}</li>
                     <li>{{ user.profile.country }}</li>
-                    <a class="" href="{% url 'update_profile' %}">Edit Address</a>
+                </ul>
+            </div>
+        </div>
+        <a class="btn btn-primal" href="{% url 'update_profile' %}">Edit informaiton</a>
+    </div>
+
+    <div class="col-md-7">
+        <div class="card my-2">
+            <div class="card-body">
+                <h5><strong>Your Recent Orders</strong></h5>
+
+                <ul class="list-unstyled">
                 </ul>
             </div>
         </div>
