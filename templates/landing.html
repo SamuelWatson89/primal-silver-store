@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="row mb-2">
+  <div class="col-12">
+    <div class="jumbotron text-light text-center rounded-0">
+      <h2 class="d-inline bg-primal p-1">Welcome to the home of things nature</h2>
+      <hr class="my-4">
+      <p class="lead d-inline bg-white text-primal p-1"><strong>Find unique pieces of jewellery inspired by
+          nature.</strong></p>
+      <p class="lead mt-2">
+        <a class="btn btn-primal btn-lg" href="{% url 'products' %}" role="button">Shop now</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="row my-2">
+  <div class="col-12 col-sm-8">
+    <h2 class="text-primal">Inspired by nature</h2>
+
+    <h4>
+      Primal silver stirve to bring the most exscuisite pieces of nature inspirsed jewllery to you.
+    </h4>
+
+    <hr>
+
+    <h2 class="text-primal">
+      Crafted by hand
+    </h2>
+
+    <h4>
+      All pieces are masterfully crafted by hand, so there is always a limited stock of each item!
+    </h4>
+  </div>
+
+  <div class="col-3 d-none d-sm-block">
+    <div id="randomProductSlide" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        {% for product in products %}
+        {% if forloop.first %}
+        <li data-target="#randomProductSlide" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+        {% else %}
+        <li data-target="#randomProductSlide" data-slide-to="{{ forloop.counter0 }}"></li>
+        {% endif %}
+        {% endfor %}
+      </ol>
+      <div class="carousel-inner">
+        {% for product in products %}
+        {% if forloop.first %}
+        <div class="carousel-item active">
+          {% else %}
+          <div class="carousel-item">
+            {% endif %}
+            <img class="d-block w-100" src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.name }}">
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="row bg-dark my-2">
+  <div class="col-12 text-center text-light p-3">
+    <h4>Random picks</h4>
+  </div>
+
+  {% for product in products %}
+  <div class="col-5 col-md-2 mx-auto">
+    <a href="{% url 'product' product.id %}" class="text-decoration-none">
+      <div class="card border-0 text-center bg-transparent">
+        <img src="{{ MEDIA_URL }}{{ product.image }}" class="card-img-top rounded-circle" alt="{{ product.id }}">
+        <div class="card-body ">
+          <div class="product-price w-100">£{{product.price}}</div>
+        </div>
+      </div>
+    </a>
+  </div>
+  {% empty %}
+
+  <div class="col-12 text-center p-5">
+
+    <h2>Whoops... Looks like we dont have anythig listed yet!</h2>
+    <h4>Check back soon!</h4>
+  </div>
+
+  {% endfor %}
+
+  <nav class="col-12" aria-label="Page navigation example">
+    {% if products.has_other_pages %}
+
+    <ul class="pagination">
+      {% if products.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ products.previous_page_number }}">Prev</a></li>
+      {% else %}
+      <li class="page-item disabled"><span class="page-link">Prev</span></li>
+      {% endif %}
+
+      {% for i in products.paginator.page_range %}
+      {% if products.number == i %}
+      <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+      <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+      {% endfor %}
+
+      {% if products.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">Next</a></li>
+      {% else %}
+      <li class="page-item disabled"><span class="page-link">Next</span></li>
+      {% endif %}
+    </ul>
+    {% endif %}
+  </nav>
+</section>
+
+{% endblock %}
