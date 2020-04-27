@@ -11,7 +11,7 @@
 
 <div class="row ">
   {% for product in products %}
-  <div class="col-6 col-md-4 col-lg-2">
+  <div class="col-6 col-md-4 col-lg-3">
     <a href="{% url 'product' product.id %}" class="text-decoration-none">
       <div class="card border-0 text-center">
         <img src="{{ MEDIA_URL }}{{ product.image }}" class="card-img-top rounded-circle" alt="{{ product.id }}">
@@ -39,5 +39,34 @@
   </div>
 
   {% endfor %}
+
+  <nav class="col-12" aria-label="Page navigation example">
+    {% if products.has_other_pages %}
+
+    <ul class="pagination">
+      {% if products.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ products.previous_page_number }}">Prev</a></li>
+      {% else %}
+      <li class="page-item disabled"><span class="page-link">Prev</span></li>
+      {% endif %}
+
+      {% for i in products.paginator.page_range %}
+      {% if products.number == i %}
+      <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+      <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+      {% endfor %}
+
+      {% if products.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">Next</a></li>
+      {% else %}
+      <li class="page-item disabled"><span class="page-link">Next</span></li>
+      {% endif %}
+    </ul>
+    {% endif %}
+  </nav>
+
 </div>
+
 {% endblock %}
