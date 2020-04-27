@@ -113,8 +113,7 @@ footer {
 }
 
 .message-exit {
-  -webkit-animation: swing-out-top-bck 0.45s
-    cubic-bezier(0.6, -0.28, 0.735, 0.045) both;
+  -webkit-animation: swing-out-top-bck 0.45s cubic-bezier(0.6, -0.28, 0.735, 0.045) both;
   animation: swing-out-top-bck 0.45s cubic-bezier(0.6, -0.28, 0.735, 0.045) both;
 }
 
@@ -126,6 +125,7 @@ footer {
     transform-origin: top;
     opacity: 1;
   }
+
   100% {
     -webkit-transform: rotateX(-100deg);
     transform: rotateX(-100deg);
@@ -134,6 +134,7 @@ footer {
     opacity: 0;
   }
 }
+
 @keyframes swing-out-top-bck {
   0% {
     -webkit-transform: rotateX(0deg);
@@ -142,6 +143,7 @@ footer {
     transform-origin: top;
     opacity: 1;
   }
+
   100% {
     -webkit-transform: rotateX(-100deg);
     transform: rotateX(-100deg);
@@ -149,6 +151,10 @@ footer {
     transform-origin: top;
     opacity: 0;
   }
+}
+
+.bg-primal {
+  background-color: #87d5b4 !important;
 }
 
 .btn-primal {
@@ -195,4 +201,8 @@ fieldset[disabled] .btn-primal.active {
 .btn-primal .badge {
   color: #87d5b4;
   background-color: #ffffff;
+}
+
+.jumbotron {
+  background: url('https://primal-silver.s3.amazonaws.com/media/banners/landing-page-banner.jpg') no-repeat center center;
 }
