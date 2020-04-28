@@ -3,6 +3,8 @@ from django.db import models
 
 class Product_types(models.Model):
     name = models.CharField(max_length=254, default='')
+    banner_image = models.ImageField(upload_to='banners', null=False)
+    card_image = models.ImageField(upload_to='cards', null=False)
 
     class Meta:
         verbose_name = 'Product Type'
