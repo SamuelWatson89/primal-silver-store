@@ -6,54 +6,54 @@
 
 {% block content %}
 <section class="row my-4">
-    <div class="col-7">
-        <h2>
-            {{product.name}}
-        </h2>
+  <div class="col-7">
+    <h2>
+      {{product.name}}
+    </h2>
 
-        {% if product.stock_count > 0 %}
-        <p class="text-success"><i class="fa fa-check"></i> {{  product.stock_count }} In stock</p>
-        {% else %}
-        <p class="text-danger"><i class="fa fa-times"></i> Not in stock</p>
-        {% endif %}
+    {% if product.stock_count > 0 %}
+    <p class="text-success"><i class="fa fa-check"></i> {{  product.stock_count }} In stock</p>
+    {% else %}
+    <p class="text-danger"><i class="fa fa-times"></i> Not in stock</p>
+    {% endif %}
 
-        <div class="product-price">
-            £{{product.price}}
-        </div>
-
-        <p>
-            {{product.description}}
-        </p>
-
-
-        <p>
-            <a class="text-success" type="submit" href="{% url 'add_to_wishlist' product.id %}">Add to
-                wishlist</a>
-        </p>
-
-        <form method="post" action="{% url 'add_to_cart' product.id %}">
-            {% csrf_token %}
-            <div class="input-group">
-                <input name="quantity" type="number" min="1" max="99" class="form-control" placeholder="Quantity">
-                <span class="input-group-btn">
-                    {% if product.stock_count > 0 %}
-                    <button class="btn btn-primal rounded-0" type="submit">Add To Bag</button>
-                    {% else %}
-                    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Item not in stock">
-                        <button class="btn btn-primal rounded-0" type="submit" style="pointer-events: none;"
-                            aria-disabled=" true" disabled>
-                            Add To Bag
-                        </button>
-                    </span>
-                    {% endif %}
-                </span>
-            </div>
-        </form>
+    <div class="product-price">
+      £{{product.price}}
     </div>
 
-    <div class="col-5">
-        <img src="{{ MEDIA_URL }}{{ product.image }}" class="img-fluid" alt="{{ product.id }}">
-    </div>
+    <p>
+      {{product.description}}
+    </p>
+
+
+    <p>
+      <a class="text-success" type="submit" href="{% url 'add_to_wishlist' product.id %}">Add to
+        wishlist</a>
+    </p>
+
+    <form method="post" action="{% url 'add_to_cart' product.id %}">
+      {% csrf_token %}
+      <div class="input-group">
+        <input name="quantity" type="number" min="1" max="99" class="form-control" placeholder="Quantity">
+        <span class="input-group-btn">
+          {% if product.stock_count > 0 %}
+          <button class="btn btn-primal rounded-0" type="submit">Add To Bag</button>
+          {% else %}
+          <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Item not in stock">
+            <button class="btn btn-primal rounded-0" type="submit" style="pointer-events: none;" aria-disabled=" true"
+              disabled>
+              Add To Bag
+            </button>
+          </span>
+          {% endif %}
+        </span>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-5">
+    <img src="{{ MEDIA_URL }}{{ product.image }}" class="img-fluid" alt="{{ product.id }}">
+  </div>
 </section>
 
 {% endblock %}
