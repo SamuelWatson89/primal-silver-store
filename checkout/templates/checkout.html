@@ -1,14 +1,20 @@
 {% extends "base.html" %}
+
 {% load static %}
+
 {% load bootstrap_tags %}
+
+{% block page_title %}Checkout - Primal Silver{% endblock %}
+
+{% block page_heading %}Checkout - Primal Silver{% endblock %}
 
 {% block head_js %}
 <script src="https://js.stripe.com/v2/"></script>
 
 <script type="text/javascript">
-    //<![CDATA[
-    Stripe.publishableKey = '{{ publishable }}';
-    //]]>
+  //<![CDATA[
+  Stripe.publishableKey = '{{ publishable }}';
+  //]]>
 </script>
 
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
@@ -16,69 +22,68 @@
 
 {% block content %}
 {% if product_count > 0 %}
-<div class="row m-3">
-    <div class="col-12">
-        <h3>Checkout your order</h3>
+<section class="row m-3">
+  <div class="col-12">
+    <h3>Checkout your order</h3>
+  </div>
+</section>
+
+<section class="row">
+  <div class="col-12 col-lg-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Order Summary</h5>
+        <p>
+          <strong>Total products</strong> {{product_count}}
+        </p>
+
+        <p><strong>Total cost</strong> £{{ total }}</p>
+      </div>
     </div>
-</div>
+  </div>
 
-<div class="row">
-    <div class="col-12 col-lg-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Order Summary</h5>
-                <p>
-                    <strong>Total products</strong> {{product_count}}
-                </p>
+  <div class="col-12 col-lg-9">
+    <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+      <legend>Payment Details</legend>
 
-                <p><strong>Total cost</strong> £{{ total }}</p>
-            </div>
+      <div id="credit-card-errors" style="display: none;">
+        <div id="alert-message block-message error" id="stripe-error-message"></div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <h6>Delivery & payment address Info</h6>
+          {{ order_form | as_bootstrap_inline }}
         </div>
-    </div>
 
-    <div class="col-12 col-lg-9">
-        <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
-            <legend>Payment Details</legend>
+        <div class="form-group col-md-6">
+          <h6>Card Details</h6>
+          {{ payment_form | as_bootstrap_inline }}
+        </div>
+      </div>
 
-            <div id="credit-card-errors" style="display: none;">
-                <div id="alert-message block-message error" id="stripe-error-message"></div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <h6>Delivery & payment address Info</h6>
-                    {{ order_form | as_bootstrap_inline }}
-                </div>
-
-                <div class="form-group col-md-6">
-                    <h6>Card Details</h6>
-                    {{ payment_form | as_bootstrap_inline }}
-                </div>
-            </div>
-
-            {% csrf_token %}
-            <div class="form-group col-md-12">
-                <input class=" btn btn-primal" id="submit_payment_btn" name="commit" type="submit"
-                    value="Confirm Order">
-            </div>
-        </form>
-    </div>
-</div>
+      {% csrf_token %}
+      <div class="form-group col-md-12">
+        <input class=" btn btn-primal" id="submit_payment_btn" name="commit" type="submit" value="Confirm Order">
+      </div>
+    </form>
+  </div>
+</section>
 
 {% else %}
 
-<div class="row">
-    <div class="col-12 my-5 text-center">
-        <h3>You havnt added anything to your bag... <br>
-            ...So you cannot give us any money yet</h3>
-    </div>
-</div>
+<section class="row">
+  <div class="col-12 my-5 text-center">
+    <h3>You havnt added anything to your bag... <br>
+      ...So you cannot give us any money yet</h3>
+  </div>
+</section>
 
-<div class="row">
-    <div class="col-12 text-center">
-        <a href="{% url 'products'%}" class="btn btn-primal rounded-0 border-0">Back to home</a>
-        <a href="{% url 'view_cart' %}" class="btn btn-primal rounded-0 border-0">Back to cart</a>
-    </div>
-</div>
+<section class="row">
+  <div class="col-12 text-center">
+    <a href="{% url 'products'%}" class="btn btn-primal rounded-0 border-0">Back to home</a>
+    <a href="{% url 'view_cart' %}" class="btn btn-primal rounded-0 border-0">Back to cart</a>
+  </div>
+</section>
 
 {% endif %}
 {% endblock %}
