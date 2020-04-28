@@ -1,91 +1,96 @@
 {% extends 'base.html' %}
+
 {% load static %}
+
 {% load bootstrap_tags %}
 
+{% block page_title %}Cart - Primal Silver{% endblock %}
+
+{% block page_heading %}Cart - Primal Silver{% endblock %}
+
 {% block content %}
-<div class="row my-3">
-    <div class="col-12">
-        <h3>You Order</h3>
-    </div>
-</div>
+<section class="row my-3">
+  <div class="col-12">
+    <h3>You Order</h3>
+  </div>
+</section>
 
-<div class="row">
-    <div class="col-12 col-lg-9">
-        {% for item in cart_items %}
-        <div class="row border-bottom mb-5">
-            <div class="col-7">
-                <div class="media">
-                    <img src="{{ MEDIA_URL }}{{ item.product.image }}" class="mr-3" alt="..." width="64px">
-                    <div class="media-body">
-                        <h5 class="mt-0">{{ item.product.name }} <small
-                                class="text-success">£{{ item.product.price }}</small>
-                        </h5>
+<section class="row">
+  <div class="col-12 col-lg-9">
+    {% for item in cart_items %}
+    <div class="row border-bottom mb-5">
+      <div class="col-7">
+        <div class="media">
+          <img src="{{ MEDIA_URL }}{{ item.product.image }}" class="mr-3" alt="..." width="64px">
+          <div class="media-body">
+            <h5 class="mt-0">{{ item.product.name }} <small class="text-success">£{{ item.product.price }}</small>
+            </h5>
 
-                        {% if item.quantity > item.product.stock_count %}
-                        <p class="alert alert-danger itemOverOrder" role="alert">
-                            <strong>{{item.quantity}}</strong> Added<br />
-                            <strong>{{ item.product.stock_count }}</strong> In stock <br />
-                            <small><strong>You are trying to order more than we have in stock</strong></small>
-                        </p>
-                        {% else %}
-                        <p><strong>Quantity:</strong> {{item.quantity}}</p>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-5">
-                <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="quantity" class="sr-only">New Quantity</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon3">Ordered</span>
-                            </div>
-                            <input name="quantity" type="number" min="0" max="999" class="form-control"
-                                value="{{item.quantity}}" id="quantity">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-sm btn-outline-primary ml-2">
-                        Amend
-                    </button>
-                </form>
-            </div>
-        </div>
-        {% empty %}
-        <div class="row border-bottom mb-5">
-            <div class="col-12">
-                <h4>Looks pretty empty in here...</h4>
-            </div>
-        </div>
-        {% endfor%}
-    </div>
-
-    <div class="col-12 col-lg-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Order Summary</h5>
-                <p>
-                    <strong>Total products</strong> {{product_count}}
-                </p>
-
-                <p><strong>Total cost</strong> £{{ total }}</p>
-            </div>
-
-            {% if product_count == 0 %}
-            <div class="card-footer">
-                <a href="{% url 'checkout'%}" class="btn btn-outline-secondary btn-block disabled" role="button"
-                    disabled><span class="fa fa-check" aria-hidden="true"></span> Checkout</a>
-            </div>
+            {% if item.quantity > item.product.stock_count %}
+            <p class="alert alert-danger itemOverOrder" role="alert">
+              <strong>{{item.quantity}}</strong> Added<br />
+              <strong>{{ item.product.stock_count }}</strong> In stock <br />
+              <small><strong>You are trying to order more than we have in stock</strong></small>
+            </p>
             {% else %}
-            <div class="card-footer">
-                <a href="{% url 'checkout'%}" class="btn btn-primal btn-block" id="checkoutButton" role="button"><span
-                        class="fa fa-check" aria-hidden="true"></span> Checkout</a>
-            </div>
+            <p><strong>Quantity:</strong> {{item.quantity}}</p>
             {% endif %}
+          </div>
         </div>
+      </div>
+
+      <div class="col-5">
+        <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="quantity" class="sr-only">New Quantity</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">Ordered</span>
+              </div>
+              <input name="quantity" type="number" min="0" max="999" class="form-control" value="{{item.quantity}}"
+                id="quantity">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-sm btn-outline-primary ml-2">
+            Amend
+          </button>
+        </form>
+      </div>
     </div>
-</div>
+    {% empty %}
+    <div class="row border-bottom mb-5">
+      <div class="col-12">
+        <h4>Looks pretty empty in here...</h4>
+      </div>
+    </div>
+    {% endfor%}
+  </div>
+
+  <div class="col-12 col-lg-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Order Summary</h5>
+        <p>
+          <strong>Total products</strong> {{product_count}}
+        </p>
+
+        <p><strong>Total cost</strong> £{{ total }}</p>
+      </div>
+
+      {% if product_count == 0 %}
+      <div class="card-footer">
+        <a href="{% url 'checkout'%}" class="btn btn-outline-secondary btn-block disabled" role="button" disabled><span
+            class="fa fa-check" aria-hidden="true"></span> Checkout</a>
+      </div>
+      {% else %}
+      <div class="card-footer">
+        <a href="{% url 'checkout'%}" class="btn btn-primal btn-block" id="checkoutButton" role="button"><span
+            class="fa fa-check" aria-hidden="true"></span> Checkout</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
 
 {% endblock %}
