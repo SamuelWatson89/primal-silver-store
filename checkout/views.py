@@ -14,6 +14,10 @@ stripe.api_key = settings.STRIPE_SECRET
 
 @login_required()
 def checkout(request):
+    """
+    Function to gather information of order
+    Checkout the user and save the details
+    """
     products = Product.objects.all()
     for product in products:
         product_stock = product.stock_count

@@ -3,6 +3,9 @@ from products.models import Product
 
 
 class Order(models.Model):
+    """
+    Databse model to store the order information at checkout
+    """
     full_name = models.CharField(max_length=50, blank=False)
     phone_number = models.CharField(max_length=20, blank=False)
     country = models.CharField(max_length=40, blank=False)
@@ -18,6 +21,9 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
+    """
+    ORder item
+    """
     order = models.ForeignKey(Order, null=False, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, null=False, on_delete=models.CASCADE)
     quantity = models.IntegerField(blank=False)
