@@ -6,7 +6,6 @@ def cart_contents(request):
     """
     Ensure that the cart contents are available on every page
     """
-
     cart = request.session.get('cart', {})
     cart_items = []
     total = 0
@@ -17,4 +16,7 @@ def cart_contents(request):
         product_count += quantity
         cart_items.append({'id': id, 'quantity': quantity, 'product': product})
 
-    return {'cart_items': cart_items, 'total': total, 'product_count': product_count}
+    return {
+        'cart_items': cart_items,
+        'total': total,
+        'product_count': product_count}
