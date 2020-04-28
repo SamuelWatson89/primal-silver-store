@@ -5,6 +5,9 @@ from django.dispatch import receiver
 
 
 class Profile(models.Model):
+    """
+    Save users information for thier profile page
+    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     address_line1 = models.CharField(max_length=84, blank=True, null=True)
