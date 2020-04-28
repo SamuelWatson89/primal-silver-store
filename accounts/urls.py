@@ -1,5 +1,11 @@
 from django.urls import path, include
-from accounts.views import index, logout, login, registration, user_profile, update_profile
+from accounts.views import (
+    logout,
+    login,
+    registration,
+    user_profile,
+    update_profile
+)
 from accounts import url_reset
 
 urlpatterns = [
