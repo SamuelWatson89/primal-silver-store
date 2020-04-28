@@ -12,8 +12,8 @@ from .views import (
 urlpatterns = [
     path('all/', all_products, name='products'),
     path('<int:id>', a_product, name='product'),
-    path('rings/', rings, name='rings'),
-    path('necklaces/', necklaces, name='necklaces'),
-    path('bracelets/', bracelets, name='bracelets'),
-    path('earrings/', earrings, name='earrings'),
+    path('rings/', rings, name='ring'),
+    path('necklaces/', necklaces, name='necklace'),
+    path('bracelets/', bracelets, name='bracelet'),
+    path('earrings/', earrings, name='earring'),
 ]
