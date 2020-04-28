@@ -2,6 +2,9 @@ from django.db import models
 
 
 class Product_types(models.Model):
+    """
+    Function to create databse model for product types
+    """
     name = models.CharField(max_length=254, default='')
     banner_image = models.ImageField(upload_to='banners', null=False)
     card_image = models.ImageField(upload_to='cards', null=False)
@@ -15,6 +18,9 @@ class Product_types(models.Model):
 
 
 class Product(models.Model):
+    """
+    Function to create databse model for product
+    """
     name = models.CharField(max_length=254, default='')
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
