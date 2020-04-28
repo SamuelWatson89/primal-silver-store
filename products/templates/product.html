@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
+{% block page_title %}{{product.name}} - Primal Silver{% endblock %}
+
+{% block page_heading %}{{product.name}} - Primal Silver{% endblock %}
+
 {% block content %}
-<div class="row my-4">
+<section class="row my-4">
     <div class="col-7">
         <h2>
             {{product.name}}
@@ -50,6 +54,6 @@
     <div class="col-5">
         <img src="{{ MEDIA_URL }}{{ product.image }}" class="img-fluid" alt="{{ product.id }}">
     </div>
+</section>
 
-</div>
 {% endblock %}

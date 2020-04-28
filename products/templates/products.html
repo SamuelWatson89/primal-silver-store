@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<div class="container">
-  <div class="row mb-4">
-    <div class="col-12">
-      <img id="products-banner-image" src="{{ MEDIA_URL }}" alt="" class="img-fluid">
-    </div>
-  </div>
-</div>
+{% block page_title %}Products - Primal Silver{% endblock %}
 
-<div class="row ">
+{% block page_heading %}Products - Primal Silver{% endblock %}
+
+{% block content %}
+<section class="row mb-4">
+  <div class="col-12">
+    <img id="products-banner-image" src="{{ MEDIA_URL }}" alt="" class="img-fluid">
+  </div>
+</section>
+
+<section class="row">
   {% for product in products %}
   <div class="col-6 col-md-4 col-lg-3">
     <a href="{% url 'product' product.id %}" class="text-decoration-none">
@@ -67,6 +69,6 @@
     {% endif %}
   </nav>
 
-</div>
+</section>
 
 {% endblock %}
