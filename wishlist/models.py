@@ -4,6 +4,9 @@ from products.models import Product
 
 
 class Wishlist(models.Model):
+    """
+    Model required to link a wishlist to a specific user.
+    """
     user = models.ForeignKey(
         User,
         related_name='user',
