@@ -28,7 +28,7 @@
             <div class="card-body">
                 <h5 class="card-title">Order Summary</h5>
                 <p>
-                    <strong>Total products ordered</strong> {{product_count}}
+                    <strong>Total products</strong> {{product_count}}
                 </p>
 
                 <p><strong>Total cost</strong> £{{ total }}</p>
@@ -57,7 +57,7 @@
 
             {% csrf_token %}
             <div class="form-group col-md-12">
-                <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit"
+                <input class=" btn btn-primal" id="submit_payment_btn" name="commit" type="submit"
                     value="Confirm Order">
             </div>
         </form>

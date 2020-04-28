@@ -9,7 +9,6 @@
     </div>
 </div>
 
-
 <div class="row">
     <div class="col-12 col-lg-9">
         {% for item in cart_items %}
@@ -29,7 +28,7 @@
                             <small><strong>You are trying to order more than we have in stock</strong></small>
                         </p>
                         {% else %}
-                        <p><strong>Quantity Ordered:</strong> {{item.quantity}}</p>
+                        <p><strong>Quantity:</strong> {{item.quantity}}</p>
                         {% endif %}
                     </div>
                 </div>
@@ -68,7 +67,7 @@
             <div class="card-body">
                 <h5 class="card-title">Order Summary</h5>
                 <p>
-                    <strong>Total products ordered</strong> {{product_count}}
+                    <strong>Total products</strong> {{product_count}}
                 </p>
 
                 <p><strong>Total cost</strong> £{{ total }}</p>
