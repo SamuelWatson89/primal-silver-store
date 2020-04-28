@@ -1,108 +1,106 @@
 {% extends 'base.html' %}
 
-{% block page_title %}{{ user }}'s Wishlist{% endblock %}
+{% block page_title %}{{ user }}'s Wishlist - Primal Silver Store{% endblock %}
 
 {% block page_heading %}{{ user }}'s Wishlist{% endblock %}
 
 {% block content %}
 
 <div class="row my-3">
-    <div class="col-12">
-        <h3>Your Wishlist</h3>
-    </div>
+  <div class="col-12">
+    <h3>Your Wishlist</h3>
+  </div>
 </div>
 
-<div class="row">
-    {% for item in wishlist %}
-    <div class="col-12 col-sm-6 col-lg-3">
-        <div class="card border-0 text-center">
-            <img src="{{ MEDIA_URL }}{{ item.product.image }}" class="card-img-top rounded-circle"
-                alt="{{ item.product.id }}">
+<section class="row">
+  {% for item in wishlist %}
+  <div class="col-12 col-sm-6 col-lg-3">
+    <div class="card border-0 text-center">
+      <img src="{{ MEDIA_URL }}{{ item.product.image }}" class="card-img-top rounded-circle"
+        alt="{{ item.product.id }}">
 
-            <div class="card-body">
-                <h5 class="card-title text-primal">{{ item.product.name }}</h5>
+      <div class="card-body">
+        <h5 class="card-title text-primal">{{ item.product.name }}</h5>
 
-                {% if item.product.stock_count > 0 %}
-                <p class="text-success"><i class="fa fa-check"></i> {{  item.product.stock_count }} In stock</p>
-                {% else %}
-                <p class="text-danger"><i class="fa fa-times"></i> Not in stock</p>
-                {% endif %}
+        {% if item.product.stock_count > 0 %}
+        <p class="text-success"><i class="fa fa-check"></i> {{  item.product.stock_count }} In stock</p>
+        {% else %}
+        <p class="text-danger"><i class="fa fa-times"></i> Not in stock</p>
+        {% endif %}
 
-                <div class="product-price w-100">£{{ item.product.price}}</div>
+        <div class="product-price w-100">£{{ item.product.price}}</div>
 
 
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="input-group">
-                        <input name="quantity" type="number" min="1" max="999" class="form-control"
-                            placeholder="Quantity">
-                        <span class="input-group-btn">
-                            {% if product.stock_count > 0 %}
-                            <button class="btn btn-primal rounded-0" type="submit">Add To Bag</button>
-                            {% else %}
-                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Item not in stock">
-                                <button class="btn btn-primal rounded-0" type="submit" style="pointer-events: none;"
-                                    aria-disabled=" true" disabled>
-                                    Add
-                                </button>
-                            </span>
-                            {% endif %}
-                        </span>
-                    </div>
-                </form>
+        <form method="post">
+          {% csrf_token %}
+          <div class="input-group">
+            <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity">
+            <span class="input-group-btn">
+              {% if product.stock_count > 0 %}
+              <button class="btn btn-primal rounded-0" type="submit">Add To Bag</button>
+              {% else %}
+              <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Item not in stock">
+                <button class="btn btn-primal rounded-0" type="submit" style="pointer-events: none;"
+                  aria-disabled=" true" disabled>
+                  Add
+                </button>
+              </span>
+              {% endif %}
+            </span>
+          </div>
+        </form>
 
-                <div class="m-2">
-                    <a href="{% url 'product' item.product.id %}"
-                        class="btn btn-outline-dark btn-block btn-sm rounded-0">
-                        View product in store
-                    </a>
-                </div>
-            </div>
-
-            <div class="card-footer text-center bg-transparent">
-                <a class="text-danger" type="submit" href="{% url 'remove_from_wishlist' id=item.id %}">Remove from
-                    wishlist</a>
-            </div>
+        <div class="m-2">
+          <a href="{% url 'product' item.product.id %}" class="btn btn-outline-dark btn-block btn-sm rounded-0">
+            View product in store
+          </a>
         </div>
-    </div>
-    {% empty %}
+      </div>
 
-    <div class="col-12 text-center p-5 bg-light">
-        <h2>Hey, you havnt added anything yet!</h2>
-        <p>Save the items you like the look of here, and check back for any sales and discounts!</p>
+      <div class="card-footer text-center bg-transparent">
+        <a class="text-danger" type="submit" href="{% url 'remove_from_wishlist' id=item.id %}">Remove from
+          wishlist</a>
+      </div>
     </div>
+  </div>
+  {% empty %}
 
-    {% endfor %}
-</div>
+  <div class="col-12 text-center p-5 bg-light">
+    <h2>Hey, you havnt added anything yet!</h2>
+    <p>Save the items you like the look of here, and check back for any sales and discounts!</p>
+  </div>
+
+  {% endfor %}
+</section>
 
 {% endblock%}
 
 
 <div class="col-12 col-sm-6 col-lg-3">
-    <div class="card">
-        <img src="{{ MEDIA_URL }}{{ product.image }}" class="card-img-top" alt="{{ product.id }}">
+  <div class="card">
+    <img src="{{ MEDIA_URL }}{{ product.image }}" class="card-img-top" alt="{{ product.id }}">
 
-        <div class="card-body">
+    <div class="card-body">
 
-            <h5 class="card-title">{{ product.name }}</h5>
-            <p>{{ product.price }}</p>
+      <h5 class="card-title">{{ product.name }}</h5>
+      <p>{{ product.price }}</p>
 
-            <p class="card-text">{{ product.description|truncatechars:25 }}</p>
+      <p class="card-text">{{ product.description|truncatechars:25 }}</p>
 
-            <form method="post" action="{% url 'add_to_cart' product.id %}">
-                {% csrf_token %}
-                <div class="input-group">
-                    <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity">
-                    <span class="input-group-btn">
-                        <button class="btn btn-primal" type="submit">Add</button>
-                    </span>
-                </div>
-            </form>
+      <form method="post" action="{% url 'add_to_cart' product.id %}">
+        {% csrf_token %}
+        <div class="input-group">
+          <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity">
+          <span class="input-group-btn">
+            <button class="btn btn-primal" type="submit">Add</button>
+          </span>
         </div>
-
-        <div class="card-footer text-center">
-            <a class="text-success" type="submit" href="{% url 'add_to_wishlist' product.id %}">Add to
-                wishlist</a>
-        </div>
+      </form>
     </div>
+
+    <div class="card-footer text-center">
+      <a class="text-success" type="submit" href="{% url 'add_to_wishlist' product.id %}">Add to
+        wishlist</a>
+    </div>
+  </div>
 </div>
