@@ -8,24 +8,24 @@
 
 {% block content %}
 
-<div class="row">
-    <div class="col-md-8 mx-0 mx-sm-auto">
-        <h3>Edit info {{ profile.username }}</h3>
+<section class="row">
+  <div class="col-md-8 mx-0 mx-sm-auto">
+    <h3>Edit info {{ profile.username }}</h3>
 
-        <form method="post">
-            {% csrf_token %}
-            <div class="row">
-                <div class="col-12 col-sm-6">
-                    {{ user_form | as_bootstrap_inline }}
-                </div>
+    <form method="post">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          {{ user_form | as_bootstrap_inline }}
+        </div>
 
-                <div class="col-12 col-sm-6">
-                    {{ profile_form | as_bootstrap_inline }}
-                    <button class="btn btn-primary float-right" type="submit">Save changes</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+        <div class="col-12 col-sm-6">
+          {{ profile_form | as_bootstrap_inline }}
+          <button class="btn btn-primary float-right" type="submit">Save changes</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
 
 {% endblock%}

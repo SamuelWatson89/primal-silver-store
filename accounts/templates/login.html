@@ -2,32 +2,31 @@
 
 {% load bootstrap_tags %}
 
-{% block page_title %}Login Page{% endblock %}
+{% block page_title %}Login - Primal Silver{% endblock %}
 
 {% block page_heading %}User Login{% endblock %}
 
 {% block content %}
 
-<div class="container">
-  <div class="row">
-    <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto my-2 my-md-5">
-      <div class="card bg-primal rounded-0 border-0">
-        <div class="card-body">
-          <section class="my-2">
-            <form method="POST">
-              {% csrf_token %}
-              {{ login_form | as_bootstrap }}
-              <button class="btn btn-light rounded-0" type="submit">Login</button>
-              <a href="{% url 'password_reset' %}" class="text-light">Forgotten Password</a>
-            </form>
-          </section>
+<section class="row">
+  <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto my-2 my-md-5">
+    <div class="card bg-primal rounded-0 border-0">
+      <div class="card-body">
+        <section class="my-2">
+          <form method="POST">
+            {% csrf_token %}
+            {{ login_form | as_bootstrap }}
+            <button class="btn btn-light rounded-0" type="submit">Login</button>
+            <a href="{% url 'password_reset' %}" class="text-light">Forgotten Password</a>
+          </form>
+        </section>
 
-          <section class="my-2">
-            <p>If you do not have an account, <a href="{% url 'register' %}" class="text-light">Register now</a></p>
-          </section>
-        </div>
+        <section class="my-2">
+          <p>If you do not have an account, <a href="{% url 'register' %}" class="text-light">Register now</a></p>
+        </section>
       </div>
     </div>
   </div>
-</div>
+</section>
+
 {% endblock %}
