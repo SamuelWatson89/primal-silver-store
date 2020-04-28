@@ -22,7 +22,7 @@ class Order(models.Model):
 
 class OrderLineItem(models.Model):
     """
-    ORder item
+    Order item
     """
     order = models.ForeignKey(Order, null=False, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, null=False, on_delete=models.CASCADE)
