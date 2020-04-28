@@ -206,3 +206,13 @@ fieldset[disabled] .btn-primal.active {
 .jumbotron {
   background: url('https://primal-silver.s3.amazonaws.com/media/banners/landing-page-banner.jpg') no-repeat center center;
 }
+
+.page-link {
+  color: #87d5b4;
+}
+
+.page-item.active .page-link {
+  background-color: #87d5b4;
+  border-color: #87d5b4;
+  color: #fff;
+}
