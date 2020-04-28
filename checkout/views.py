@@ -14,6 +14,10 @@ stripe.api_key = settings.STRIPE_SECRET
 
 @login_required()
 def checkout(request):
+    products = Product.objects.all()
+    for product in products:
+        product_stock = product.stock_count
+
     if request.method == "POST":
         order_form = OrderForm(request.POST)
         payment_form = MakePaymentForm(request.POST)
@@ -68,6 +72,7 @@ def checkout(request):
         request, "checkout.html", {
             "order_form": order_form,
             "payment_form": payment_form,
-            "publishable": settings.STRIPE_PUBLISHABLE
+            "publishable": settings.STRIPE_PUBLISHABLE,
+            "product_stock": product_stock
         }
     )

@@ -1,6 +1,6 @@
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
-from .models import Product
+from .models import Product, Product_types
 
 
 def all_products(request):
@@ -20,6 +20,22 @@ def all_products(request):
 def a_product(request, id):
     product = Product.objects.get(id=id)
     return render(request, 'product.html', {"product": product})
+
+
+def product_types(request):
+    product_types = Product_types.object.all()
+    return {'product_types': product_types}
+
+
+def product_stock_count(request):
+    """
+    Global access to the product stock counts
+    """
+
+    products = Product.objects.all()
+    for product in products:
+        product_stock = product.stock_count
+    return {"product_stock": product_stock}
 
 
 def rings(request):
