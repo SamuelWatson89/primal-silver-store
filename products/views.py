@@ -54,5 +54,5 @@ def bracelets(request):
 
 
 def earrings(request):
-    products = Product.objects.filter(product_type__name__iexact="earrings")
+    products = Product.objects.filter(product_type__name__iexact="earring")
     return render(request, "products.html", {"products": products})
